@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "name": "Cataract Surgery",
+        "price": "5000",
+        "description": "To remove the lens of your eye ",
+        "img": "https://www.verywellhealth.com/thmb/wlykDWc1AujI9dxjsky9E-aS-oU=/2172x1380/filters:no_upscale():max_bytes(150000):strip_icc()/laser_eye_surgery-a7551adb99784add9e388179cc68b3c7.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Appendectomy Surgery",
+        "price": "7000",
+        "description": "To removal surgery of the appendix",
+        "img": "https://www.wikidoc.org/images/e/e1/Blinddarm-01.jpg"
+    },
+ 
+    {
+        "id": 3,
+        "name": "Cholecystectomy Surgery",
+        "price": "12000",
+        "description": "Remove the gallbladder to prevent cancer",
+        "img": "https://i.ytimg.com/vi/cRGQ-QVuHVU/maxresdefault.jpg"
+    }
+]
