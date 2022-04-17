@@ -10,6 +10,10 @@ import PageNotFound from './Pages/SharedPages/PageNotFound/PageNotFound';
 import Login from './Pages/Login/Login';
 import Footer from './Pages/SharedPages/Footer/Footer';
 import Checkout from './Pages/Checkout/Checkout';
+import Register from './Pages/Register/Register';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 function App() {
   return (
     <div className="App">
@@ -22,6 +26,7 @@ function App() {
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/checkout" element={<Checkout></Checkout>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
       <Footer></Footer>

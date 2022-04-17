@@ -1,65 +1,45 @@
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import React, { useState } from 'react';
+import { getAuth } from 'firebase/auth';
+import React, { useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import app from '../../firebase.init';
 
 
-const auth = getAuth(app);
 const Login = () => {
-          const [email, setEmail] = useState('');
-          const [password, setPassword] = useState('');
-          const [validated, setValidated] = useState(false);
+          const emailRef = useRef('');
+          const passwordRef = useRef('');
+          const navigate = useNavigate();
 
-          const handleSubmit = (event) => {
-                    const form = event.currentTarget;
-                    if (form.checkValidity() === false) {
-                              event.preventDefault();
-                              event.stopPropagation();
-                              return;
-                    }
-
-                    setValidated(true);
-          };
-
-          const handleEmailBlur = event => {
-                    setEmail(event.target.value);
-          }
-
-          const handlePasswordBlur = event => {
-                    setPassword(event.target.value);
-          }
-
-          const handleSubmitted = (event) => {
-                    createUserWithEmailAndPassword(auth, email, password)
-                              .then(result => {
-                                        const user = result.user;
-                                        setEmail('');
-                                        setPassword('');
-                              })
-                              .catch((error) => {
-                                        console.error('error', error);
-                              });
+          const handleSubmit = event => {
                     event.preventDefault();
+                    const email = emailRef.current.value;
+                    const password = passwordRef.current.value;
+                    console.log(email, password);
+          }
+
+          const navigateToRegister = () => {
+                    navigate('/register');
           }
           return (
                     <div className='container w-50 mx-auto'>
                               <h2 className='text-center text-primary'>Please Login</h2>
-                              <Form noValidate validated={validated} onSubmit={handleSubmitted}>
+                              <Form onSubmit={handleSubmit}>
                                         <Form.Group className="mb-3" controlId="formBasicEmail">
                                                   <Form.Label>Email address</Form.Label>
-                                                  <Form.Control onBlur={handleEmailBlur} type="email" placeholder="Enter email" />
+                                                  <Form.Control ref={emailRef} type="email" placeholder="Enter email" />
                                                   <Form.Text className="text-muted">
                                                   </Form.Text>
                                         </Form.Group>
 
                                         <Form.Group className="mb-3" controlId="formBasicPassword">
                                                   <Form.Label>Password</Form.Label>
-                                                  <Form.Control onBlur={handlePasswordBlur} type="password" placeholder="Password" />
+                                                  <Form.Control ref={passwordRef} type="password" placeholder="Password" />
                                         </Form.Group>
                                         <Button variant="primary" type="submit">
                                                   Submit
                                         </Button>
                               </Form>
+                              <p>Are you new ?<Link to="/register" className='text-primary pe-auto text-decoration-none' onClick={navigateToRegister} >Please Register</Link> </p>
                     </div>
           );
 };
