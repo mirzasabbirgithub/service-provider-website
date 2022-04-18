@@ -71,7 +71,7 @@ const Login = () => {
                                                   <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
                                         </Form.Group>
                                         <Button variant="primary" type="submit">
-                                                  Submit
+                                                  Login
                                         </Button>
                               </Form>
                               {getError}
