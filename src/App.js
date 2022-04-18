@@ -14,7 +14,6 @@ import Register from './Pages/Register/Register';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';
-
 function App() {
   return (
     <div className="App">

@@ -1,16 +1,21 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GoogleLogin from './GoogleLogin/GoogleLogin';
 import auth from '../../firebase.init';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
           const emailRef = useRef('');
           const passwordRef = useRef('');
           const navigate = useNavigate();
+          const location = useLocation();
+          let from = location.state?.from?.pathname || "/";
 
+          const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+          let getError;
           const [
                     signInWithEmailAndPassword,
                     user,
@@ -18,8 +23,15 @@ const Login = () => {
                     error,
           ] = useSignInWithEmailAndPassword(auth);
 
+          if (loading || sending) {
+                    return;
+          }
           if (user) {
-                    navigate('/home');
+                    // navigate('/home');
+                    navigate(from, { replace: true });
+          }
+          if (error) {
+                    getError = <p className='text-danger'>Error: {error.message}</p>
           }
 
           const handleSubmit = event => {
@@ -28,6 +40,15 @@ const Login = () => {
                     const password = passwordRef.current.value;
                     signInWithEmailAndPassword(email, password);
           }
+
+          const resetPassword = async () => {
+                    const email = emailRef.current.value;
+                    if (email) {
+                              await sendPasswordResetEmail(email);
+                              toast('Password Reset Email Sent');
+                    }
+          }
+
 
           const navigateToRegister = event => {
                     navigate('/register');
@@ -51,8 +72,11 @@ const Login = () => {
                                                   Submit
                                         </Button>
                               </Form>
+                              {getError}
                               <p>Are you new ?<Link to="/register" className='text-primary pe-auto text-decoration-none' onClick={navigateToRegister} >Please Register</Link> </p>
+                              <p>Reset Password? <button className='btn btn-link text-primary pe-auto text-decoration-none' onClick={resetPassword}>Reset Password</button> </p>
                               <GoogleLogin></GoogleLogin>
+                              <ToastContainer />
                     </div>
           );
 };
