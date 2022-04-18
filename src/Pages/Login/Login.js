@@ -1,8 +1,9 @@
-import { getAuth } from 'firebase/auth';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import app from '../../firebase.init';
+import GoogleLogin from './GoogleLogin/GoogleLogin';
+import auth from '../../firebase.init';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
 
 const Login = () => {
@@ -10,14 +11,25 @@ const Login = () => {
           const passwordRef = useRef('');
           const navigate = useNavigate();
 
+          const [
+                    signInWithEmailAndPassword,
+                    user,
+                    loading,
+                    error,
+          ] = useSignInWithEmailAndPassword(auth);
+
+          if (user) {
+                    navigate('/home');
+          }
+
           const handleSubmit = event => {
                     event.preventDefault();
                     const email = emailRef.current.value;
                     const password = passwordRef.current.value;
-                    console.log(email, password);
+                    signInWithEmailAndPassword(email, password);
           }
 
-          const navigateToRegister = () => {
+          const navigateToRegister = event => {
                     navigate('/register');
           }
           return (
@@ -40,6 +52,7 @@ const Login = () => {
                                         </Button>
                               </Form>
                               <p>Are you new ?<Link to="/register" className='text-primary pe-auto text-decoration-none' onClick={navigateToRegister} >Please Register</Link> </p>
+                              <GoogleLogin></GoogleLogin>
                     </div>
           );
 };
