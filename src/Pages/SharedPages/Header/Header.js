@@ -8,6 +8,8 @@ import auth from '../../../firebase.init';
 
 const Header = () => {
           const [user] = useAuthState(auth);
+
+          // handle sign out button
           const handleSignOut = () => {
                     signOut(auth);
           }
@@ -25,21 +27,14 @@ const Header = () => {
                                                                       <Nav.Link as={Link} to="about">About</Nav.Link>
                                                             </Nav>
                                                             <Nav>
+                                                                      {
+                                                                                user ?
+                                                                                          <Nav.Link className='btn btn-primary text-white' onClick={handleSignOut} >Log Out</Nav.Link>
+                                                                                          :
+                                                                                          <Nav.Link as={Link} to="login">Login</Nav.Link>
 
-                                                                      <Nav>
-                                                                                {
-                                                                                          user ?
-                                                                                                    <Nav.Link className='btn btn-primary text-white' onClick={handleSignOut} >Log Out</Nav.Link>
-                                                                                                    :
-                                                                                                    <Nav.Link as={Link} to="login">Login</Nav.Link>
-
-                                                                                }
-
-                                                                      </Nav>
-
+                                                                      }
                                                             </Nav>
-
-
                                                   </Navbar.Collapse>
                                         </Container>
                               </Navbar>

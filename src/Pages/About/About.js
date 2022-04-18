@@ -3,7 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 
 const About = () => {
           return (
-                    <div>
+                    <div className='w-50 mx-auto mt-3 mb-2'>
                               <Card className="text-center">
                                         <Card.Header>About Me </Card.Header>
                                         <Card.Body>

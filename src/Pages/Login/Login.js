@@ -26,6 +26,8 @@ const Login = () => {
           if (loading || sending) {
                     return;
           }
+
+          // navigate current page instead of home page
           if (user) {
                     navigate(from, { replace: true });
           }
@@ -40,6 +42,7 @@ const Login = () => {
                     signInWithEmailAndPassword(email, password);
           }
 
+          // sent reset email with toast notification
           const resetPassword = async () => {
                     const email = emailRef.current.value;
                     if (email) {
@@ -52,6 +55,7 @@ const Login = () => {
           }
 
 
+          // navigate register page
           const navigateToRegister = event => {
                     navigate('/register');
           }

@@ -19,7 +19,7 @@ const Checkout = () => {
                                                             </Form.Text>
                                                   </Form.Group>
 
-                                                  <Button variant="primary" type="submit">
+                                                  <Button className='mb-5' variant="primary" type="submit">
                                                             Submit Now
                                                   </Button>
                                         </Form>

@@ -14,6 +14,7 @@ const Register = () => {
 
           const navigate = useNavigate();
 
+          // navigate login page
           const navigateToRegister = () => {
                     navigate('/login');
           }
@@ -25,6 +26,7 @@ const Register = () => {
                     const password = event.target.password.value;
                     console.log(email, password)
                     createUserWithEmailAndPassword(email, password);
+                    // navigate home page if login success
                     navigate('/home');
           }
 
@@ -43,9 +45,7 @@ const Register = () => {
                                                   <Form.Label>Password</Form.Label>
                                                   <Form.Control type="password" name="password" placeholder="Password" required />
                                         </Form.Group>
-                                        <Button variant="primary" type="submit" value="submit">
-                                                  Register
-                                        </Button>
+                                        <Button variant="primary" type="submit" value="submit"> Register</Button>
                               </Form>
                               <p>Are you new ?<Link to="/login" className='text-primary pe-auto text-decoration-none' onClick={navigateToRegister} >Please Login</Link> </p>
                     </div>
