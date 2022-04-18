@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GoogleLogin from './GoogleLogin/GoogleLogin';
 import auth from '../../firebase.init';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
@@ -27,7 +27,6 @@ const Login = () => {
                     return;
           }
           if (user) {
-                    // navigate('/home');
                     navigate(from, { replace: true });
           }
           if (error) {
@@ -46,6 +45,9 @@ const Login = () => {
                     if (email) {
                               await sendPasswordResetEmail(email);
                               toast('Password Reset Email Sent');
+                    }
+                    else {
+                              toast('Enter your email first');
                     }
           }
 
