@@ -1,3 +1,17 @@
+# Website name: Doctor Site
+# Website live link: https://doctor-site-4144d.web.app/
+
+# Features and functionality
+* A Doctor individual website
+* Find Different services to take
+* Login/Register authentication system
+* Authorized Routes
+* Fully responsive website
+
+# List of technologies (frameworks, libraries)
+# Liraries: ReactJS (It's a open source JavaScript libarary) 
+# Framework: React Boostrap
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
