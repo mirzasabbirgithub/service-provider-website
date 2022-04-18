@@ -9,8 +9,8 @@
 * Fully responsive website
 
 ## List of technologies (frameworks, libraries)
-## Liraries: ReactJS (It's a open source JavaScript libarary) 
-## Framework: React Boostrap
+* Liraries: ReactJS (It's a open source JavaScript libarary) 
+* Framework: React Boostrap
 
 # Getting Started with Create React App
 
